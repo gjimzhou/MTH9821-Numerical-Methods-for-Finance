@@ -111,6 +111,31 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BinomialTree.hpp" />
+    <ClInclude Include="FiniteDifference.hpp" />
+    <ClInclude Include="HW1.hpp" />
+    <ClInclude Include="HW2.hpp" />
+    <ClInclude Include="HW3.hpp" />
+    <ClInclude Include="HW4.hpp" />
+    <ClInclude Include="MonteCarlo.hpp" />
+    <ClInclude Include="NumericalMethod.hpp" />
+    <ClInclude Include="Option.hpp" />
+    <ClInclude Include="OptionFunc.hpp" />
+    <ClInclude Include="TrinomialTree.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="BinomialTree.cpp" />
+    <ClCompile Include="FiniteDifference.cpp" />
+    <ClCompile Include="HW1.cpp" />
+    <ClCompile Include="HW2.cpp" />
+    <ClCompile Include="HW3.cpp" />
+    <ClCompile Include="HW4.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="MonteCarlo.cpp" />
+    <ClCompile Include="NumericalMethod.cpp" />
+    <ClCompile Include="Option.cpp" />
+    <ClCompile Include="OptionFunc.cpp" />
+    <ClCompile Include="TrinomialTree.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
