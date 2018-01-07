@@ -15,7 +15,7 @@ using namespace std;
 #define FiniteDifference_HPP
 
 //	Finite Difference Pricer for European Options.
-vector<double> EuropeanFiniteDifferencePricer(string type, double S, double K, double T, double r, double sig, double q, long int M, double alpha);
+vector<double> EuropeanExplicitFDPricer(string type, double S, double K, double T, double r, double sig, double q, long int M, double alpha);
 
 
 

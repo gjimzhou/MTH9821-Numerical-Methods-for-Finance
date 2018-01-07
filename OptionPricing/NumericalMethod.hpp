@@ -32,4 +32,16 @@ vector<double> BoxMullerMethod(long int N, long int seed = 0);
 //	Generator for standard normal distribution random variables.
 vector<double> rnorm(long int N, string Generator = "ITM", long int seed = 0);
 
+//	Forward Substitution.
+vector<double> ForwardSubstitution(vector<vector<double>> L, vector<double> b);
+
+//	Backward Substitution.
+vector<double> BackwardSubstitution(vector<vector<double>> U, vector<double> b);
+
+//	Forward Substitution for bidiagonal matrix.
+vector<double> ForwardSubstitutionBidiag(vector<vector<double>> L, vector<double> b);
+
+//	Backward Substitution for bidiagonal matrix.
+vector<double> BackwardSubstitutionBidiag(vector<vector<double>> U, vector<double> b);
+
 #endif

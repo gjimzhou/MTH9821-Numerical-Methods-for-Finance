@@ -202,3 +202,74 @@ vector<double> rnorm(long int N, string Generator, long int seed)
 
 	return z;
 }
+
+
+//	Forward Substitution.
+vector<double> ForwardSubstitution(vector<vector<double>> L, vector<double> b)
+{
+	long int n = b.size();
+	vector<double> x(n);
+
+	x[0] = b[0] / L[0][0];
+	for (long int j = 1; j < n; j++)
+	{
+		double sum = 0;
+		for (long int k = 0; k < j; k++)
+		{
+			sum += L[j][k] * x[k];
+		}
+		x[j] = (b[j] - sum) / L[j][j];
+	}
+
+	return x;
+}
+
+//	Backward Substitution.
+vector<double> BackwardSubstitution(vector<vector<double>> U, vector<double> b)
+{
+	long int n = b.size();
+	vector<double> x(n);
+
+	x[0] = b[n - 1] / U[n - 1][n - 1];
+	for (long int j = n - 1; j > -1; j--)
+	{
+		double sum = 0;
+		for (long int k = j + 1; k < n; k++)
+		{
+			sum += U[j][k] * x[k];
+		}
+		x[j] = (b[j] - sum) / U[j][j];
+	}
+
+	return x;
+}
+
+//	Forward Substitution for bidiagonal matrix.
+vector<double> ForwardSubstitutionBidiag(vector<vector<double>> L, vector<double> b)
+{
+	long int n = b.size();
+	vector<double> x(n);
+
+	x[0] = b[0] / L[0][0];
+	for (long int j = 1; j < n; j++)
+	{
+		x[j] = (b[j] - L[j][j - 1] * x[j - 1]) / L[j][j];
+	}
+
+	return x;
+}
+
+//	Backward Substitution for bidiagonal matrix.
+vector<double> BackwardSubstitutionBidiag(vector<vector<double>> U, vector<double> b)
+{
+	long int n = b.size();
+	vector<double> x(n);
+
+	x[0] = b[n - 1] / U[n - 1][n - 1];
+	for (long int j = n - 1; j > -1; j--)
+	{
+		x[j] = (b[j] - U[j][j + 1] * x[j + 1]) / U[j][j];
+	}
+
+	return x;
+}

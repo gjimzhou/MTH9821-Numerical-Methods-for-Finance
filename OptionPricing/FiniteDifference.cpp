@@ -4,8 +4,9 @@
 
 using namespace std;
 
+
 //	Finite Difference Pricer for European Options.
-vector<double> EuropeanFiniteDifferencePricer(string type, double S, double K, double T, double r, double sig, double q, long int M, double alpha)
+vector<double> EuropeanExplicitFDPricer(string type, double S, double K, double T, double r, double sig, double q, long int M, double alpha)
 {
 	//	Black-Scholes price.
 	double VBS;
@@ -13,8 +14,8 @@ vector<double> EuropeanFiniteDifferencePricer(string type, double S, double K, d
 	else VBS = BSPutPrice(S, K, T, r, sig, q);
 
 	//	Change of variables constants.
-	double a = (r - q) / (sig *sig) - 0.5;
-	double b = ((r - q) / (sig *sig) + 0.5) * ((r - q) / (sig *sig) + 0.5) + 2 * q / (sig *sig);
+	double a = (r - q) / (sig * sig) - 0.5;
+	double b = ((r - q) / (sig * sig) + 0.5) * ((r - q) / (sig * sig) + 0.5) + 2 * q / (sig * sig);
 
 	//	Computational domain.
 	double taufinal = T * sig * sig / 2;
@@ -148,16 +149,6 @@ vector<double> EuropeanFiniteDifferencePricer(string type, double S, double K, d
 	double Vapp1dt = ((S0[i + 1] - S) * Vi0dt + (S - S0[i]) * Vi1dt) / (S0[i + 1] - S0[i]);
 
 	double Theta = (Vapp1dt - Vapp1) / dt;
-
-	//	Print matrix.
-	//for (long int m = 0; m < M + 1; m++)
-	//{
-	//	for (long int n = 0; n < N + 1; n++)
-	//	{
-	//		cout << u[m][n] << " ";
-	//	}
-	//	cout << endl;
-	//}
 
 	//	Output.
 	vector<double> res;
