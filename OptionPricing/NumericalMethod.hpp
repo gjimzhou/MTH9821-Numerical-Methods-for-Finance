@@ -20,13 +20,13 @@ long int SeedInit(long int seed = 0);	//	Initialize random seed.
 //	Linear Congruential Generator for standard uniform distribution random variable.
 vector<double> LinearCongruentialGenerator(long int N, long int seed = 0);
 
-// Inverse Transform Method for standard normal distribution random variable.
+//	Inverse Transform Method for standard normal distribution random variable.
 vector<double> InverseTransformMethod(long int N, long int seed = 0);
 
-// Acceptance-Rejection Method for standard normal distribution random variable.
+//	Acceptance-Rejection Method for standard normal distribution random variable.
 vector<double> AcceptanceRejectionMethod(long int N, long int seed = 0);
 
-// Box-Muller Method for standard normal distribution random variable.
+//	Box-Muller Method for standard normal distribution random variable.
 vector<double> BoxMullerMethod(long int N, long int seed = 0);
 
 
@@ -68,6 +68,5 @@ vector<vector<double>> Cholesky(vector<vector<double>> A);
 
 //	Linear Solver using Cholesky Decomposition.
 vector<double> LinearSolverCholesky(vector<vector<double>> A, vector<double> b);
-
 
 #endif

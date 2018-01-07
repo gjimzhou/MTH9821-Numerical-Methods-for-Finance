@@ -14,9 +14,10 @@ using namespace std;
 #ifndef FiniteDifference_HPP
 #define FiniteDifference_HPP
 
-//	Finite Difference Pricer for European Options.
+//	Explicit Finite Difference Pricer for European Options.
 vector<double> EuropeanExplicitFDPricer(string type, double S, double K, double T, double r, double sig, double q, long int M, double alpha);
 
-
+//	Implicit Finite Difference Pricer for European Options.
+vector<double> EuropeanImplicitFDPricer(string type, double S, double K, double T, double r, double sig, double q, long int M, double alpha);
 
 #endif

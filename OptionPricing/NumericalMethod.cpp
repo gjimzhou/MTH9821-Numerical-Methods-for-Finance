@@ -100,7 +100,7 @@ vector<double> LinearCongruentialGenerator(long int N, long int seed)
 	return result;
 }
 
-// Inverse Transform Method for standard normal distribution random variable.
+//	Inverse Transform Method for standard normal distribution random variable.
 vector<double> InverseTransformMethod(long int N, long int seed)
 {
 	vector<double> runif = LinearCongruentialGenerator(N, seed);
@@ -115,7 +115,7 @@ vector<double> InverseTransformMethod(long int N, long int seed)
 	return result;
 }
 
-// Acceptance-Rejection Method for standard normal distribution random variable.
+//	Acceptance-Rejection Method for standard normal distribution random variable.
 vector<double> AcceptanceRejectionMethod(long int N, long int seed)
 {
 	vector<double> result;
@@ -148,7 +148,7 @@ vector<double> AcceptanceRejectionMethod(long int N, long int seed)
 	return result;
 }
 
-// Box-Muller Method for standard normal distribution random variable.
+//	Box-Muller Method for standard normal distribution random variable.
 vector<double> BoxMullerMethod(long int N, long int seed)
 {
 	vector<double> result;
@@ -420,4 +420,3 @@ vector<double> LinearSolverCholesky(vector<vector<double>> A, vector<double> b)
 
 	return x;
 }
-
