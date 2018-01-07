@@ -204,6 +204,24 @@ vector<double> rnorm(long int N, string Generator, long int seed)
 }
 
 
+//	Transpose a matrix.
+vector<vector<double>> transpose(vector<vector<double>> A)
+{
+	long int n = A.size();
+	long int m = A[0].size();
+	vector<vector<double>> T = A;
+
+	for (long int i = 0; i < n; i++)
+	{
+		for (long int j = 0; j < m; j++)
+		{
+			T[j][i] = A[i][j];
+		}
+	}
+
+	return T;
+}
+
 //	Forward Substitution.
 vector<double> ForwardSubstitution(vector<vector<double>> L, vector<double> b)
 {
@@ -273,3 +291,133 @@ vector<double> BackwardSubstitutionBidiag(vector<vector<double>> U, vector<doubl
 
 	return x;
 }
+
+
+//	LU Decomposition without pivoting.
+vector<vector<vector<double>>> LUNoPivoting(vector<vector<double>> A)
+{
+	long int n = A.size();
+	vector<vector<double>> L = A;
+	vector<vector<double>> U = A;
+
+	for (long int i = 0; i < n - 1; i++)
+	{
+		for (long int k = i; k < n; k++)
+		{
+			U[i][k] = A[i][k];
+			L[k][i] = A[k][i] / U[i][i];
+		}
+
+		for (long int j = i + 1; j < n; j++)
+		{
+			for (long int k = i + 1; k < n; k++)
+			{
+				A[j][k] -= L[j][i] * U[i][k];
+			}
+		}
+	}
+
+	L[n - 1][n - 1] = 1;
+	U[n - 1][n - 1] = A[n - 1][n - 1];
+
+	vector<vector<vector<double>>> res;
+	res.push_back(L);
+	res.push_back(U);
+
+	return res;
+}
+
+//	LU Decomposition without pivoting for tridiagonal matrix.
+vector<vector<vector<double>>> LUNoPivotingTridiag(vector<vector<double>> A)
+{
+	long int n = A.size();
+	vector<vector<double>> L = A;
+	vector<vector<double>> U = A;
+
+	for (long int i = 0; i < n - 1; i++)
+	{
+		L[i][i] = 1;
+		L[i + 1][i] = A[i + 1][i] / A[i][i];
+		U[i][i] = A[i][i];
+		U[i][i + 1] = A[i][i + 1];
+		A[i + 1][i + 1] -= L[i + 1][i] * U[i][i + 1];
+	}
+
+	L[n - 1][n - 1] = 1;
+	U[n - 1][n - 1] = A[n - 1][n - 1];
+
+	vector<vector<vector<double>>> res;
+	res.push_back(L);
+	res.push_back(U);
+
+	return res;
+}
+
+//	Linear Solver using LU Decomposition without pivoting.
+vector<double> LinearSolverLUNoPivoting(vector<vector<double>> A, vector<double> b)
+{
+	vector<vector<vector<double>>> LU = LUNoPivoting(A);
+	vector<vector<double>> L = LU[0];
+	vector<vector<double>> U = LU[1];
+
+	vector<double> y = ForwardSubstitution(L, b);
+	vector<double> x = BackwardSubstitution(U, y);
+
+	return x;
+}
+
+//	Linear Solver using LU Decomposition without pivoting for tridiagonal matrix.
+vector<double> LinearSolverLUNoPivotingTridiag(vector<vector<double>> A, vector<double> b)
+{
+	vector<vector<vector<double>>> LU = LUNoPivotingTridiag(A);
+	vector<vector<double>> L = LU[0];
+	vector<vector<double>> U = LU[1];
+
+	vector<double> y = ForwardSubstitutionBidiag(L, b);
+	vector<double> x = BackwardSubstitutionBidiag(U, y);
+
+	return x;
+}
+
+
+//	Cholesky Decomposition.
+vector<vector<double>> Cholesky(vector<vector<double>> A)
+{
+	long int n = A.size();
+	vector<vector<double>> U = A;
+
+	for (long int i = 0; i < n - 1; i++)
+	{
+		U[i][i] = sqrt(A[i][i]);
+
+		for (long int k = i + 1; k < n; k++)
+		{
+			U[i][k] = A[i][k] / U[i][i];
+		}
+
+		for (long int j = i + 1; j < n; j++)
+		{
+			for (long int k = j; k < n; k++)
+			{
+				A[j][k] -= U[i][j] * U[i][k];
+			}
+		}
+	}
+
+	U[n - 1][n - 1] = sqrt(A[n - 1][n - 1]);
+
+	return U;
+}
+
+//	Linear Solver using Cholesky Decomposition.
+vector<double> LinearSolverCholesky(vector<vector<double>> A, vector<double> b)
+{
+	vector<vector<double>> U = Cholesky(A);
+	vector<vector<double>> L = transpose(U);
+
+	vector<double> y = ForwardSubstitution(L, b);
+	vector<double> x = BackwardSubstitution(U, y);
+
+	return x;
+}
+

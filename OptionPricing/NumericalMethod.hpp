@@ -29,8 +29,13 @@ vector<double> AcceptanceRejectionMethod(long int N, long int seed = 0);
 // Box-Muller Method for standard normal distribution random variable.
 vector<double> BoxMullerMethod(long int N, long int seed = 0);
 
+
 //	Generator for standard normal distribution random variables.
 vector<double> rnorm(long int N, string Generator = "ITM", long int seed = 0);
+
+
+//	Transpose a matrix.
+vector<vector<double>> transpose(vector<vector<double>> A);
 
 //	Forward Substitution.
 vector<double> ForwardSubstitution(vector<vector<double>> L, vector<double> b);
@@ -43,5 +48,26 @@ vector<double> ForwardSubstitutionBidiag(vector<vector<double>> L, vector<double
 
 //	Backward Substitution for bidiagonal matrix.
 vector<double> BackwardSubstitutionBidiag(vector<vector<double>> U, vector<double> b);
+
+
+//	LU Decomposition without pivoting.
+vector<vector<vector<double>>> LUNoPivoting(vector<vector<double>> A);
+
+//	LU Decomposition without pivoting for tridiagonal matrix.
+vector<vector<vector<double>>> LUNoPivotingTridiag(vector<vector<double>> A);
+
+//	Linear Solver using LU Decomposition without pivoting.
+vector<double> LinearSolverLUNoPivoting(vector<vector<double>> A, vector<double> b);
+
+//	Linear Solver using LU Decomposition without pivoting for tridiagonal matrix.
+vector<double> LinearSolverLUNoPivotingTridiag(vector<vector<double>> A, vector<double> b);
+
+
+//	Cholesky Decomposition.
+vector<vector<double>> Cholesky(vector<vector<double>> A);
+
+//	Linear Solver using Cholesky Decomposition.
+vector<double> LinearSolverCholesky(vector<vector<double>> A, vector<double> b);
+
 
 #endif
