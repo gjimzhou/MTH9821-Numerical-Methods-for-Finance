@@ -222,6 +222,86 @@ vector<vector<double>> transpose(vector<vector<double>> A)
 	return T;
 }
 
+//	Dot Product for two vectors. 
+double dotproduct(vector<double> a, vector<double> b)
+{
+	long int n = a.size();
+	double sum = 0;
+	for (long int i = 0; i < n; i++)
+	{
+		sum += a[i] * b[i];
+	}
+
+	return sum;
+}
+
+//	Cross Product for a matrix and a vector.
+vector<double> crossproduct(vector<vector<double>> A, vector<double> b)
+{
+	long int m = A.size();
+	long int n = b.size();
+	vector<double> c(m);
+
+	for (long int i = 0; i < m; i++)
+	{
+		double sum = 0;
+		for (long int j = 0; j < n; j++)
+		{
+			sum += A[i][j] * b[j];
+		}
+		c[i] = sum;
+	}
+
+	return c;
+}
+
+//	Cross Product for a vector and a matrix.
+vector<double> crossproduct(vector<double> a, vector<vector<double>> B)
+{
+	long int m = a.size();
+	long int n = B[0].size();
+	vector<double> c(n);
+
+	for (long int j = 0; j < n; j++)
+	{
+		double sum = 0;
+		for (long int i = 0; i < m; i++)
+		{
+			sum += a[i] * B[i][j];
+		}
+		c[j] = sum;
+	}
+
+	return c;
+}
+
+//	Cross Product for two matrices.
+vector<vector<double>> crossproduct(vector<vector<double>> A, vector<vector<double>> B)
+{
+	long int m = A.size();
+	long int l = B.size();
+	long int n = B[0].size();
+	vector<vector<double>> C(m);
+
+	for (long int i = 0; i < m; i++)
+	{
+		vector<double> c(n);
+		for (long int j = 0; j < n; j++)
+		{
+			double sum = 0;
+			for (long int k = 0; k < l; k++)
+			{
+				sum += A[i][k] * B[k][j];
+			}
+			c[j] = sum;
+		}
+		C[i] = c;
+	}
+
+	return C;
+}
+
+
 //	Forward Substitution.
 vector<double> ForwardSubstitution(vector<vector<double>> L, vector<double> b)
 {

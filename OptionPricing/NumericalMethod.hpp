@@ -37,6 +37,18 @@ vector<double> rnorm(long int N, string Generator = "ITM", long int seed = 0);
 //	Transpose a matrix.
 vector<vector<double>> transpose(vector<vector<double>> A);
 
+//	Dot Product for two vectors. 
+double dotproduct(vector<double> a, vector<double> b);
+
+//	Cross Product for a matrix and a vector.
+vector<double> crossproduct(vector<vector<double>> A, vector<double> b);
+
+//	Cross Product for a vector and a matrix.
+vector<double> crossproduct(vector<double> a, vector<vector<double>> B);
+
+//	Cross Product for two matrices.
+vector<vector<double>> crossproduct(vector<vector<double>> A, vector<vector<double>> B);
+
 //	Forward Substitution.
 vector<double> ForwardSubstitution(vector<vector<double>> L, vector<double> b);
 
