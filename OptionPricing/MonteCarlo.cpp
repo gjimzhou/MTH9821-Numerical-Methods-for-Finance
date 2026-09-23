@@ -194,7 +194,7 @@ double EuropeanMCCVPricer(string type, double S, double K, double T, double r, d
 
 	for (long int i = 0; i < N; i++)
 	{
-		W += (V[i] - b * (ST[i] - exp(r * T) * S));
+		W += (V[i] - b * (ST[i] - exp((r - q) * T) * S));
 	}
 
 	//	Take average.
@@ -262,7 +262,7 @@ double EuropeanMCMMPricer(string type, double S, double K, double T, double r, d
 	for (long int i = 0; i < N; i++)
 	{
 		//	Adjust stock price.
-		ST[i] *= (exp(r * T) * S / Shat);
+		ST[i] *= (exp((r - q) * T) * S / Shat);
 
 		if (type == "C")
 		{
@@ -308,7 +308,7 @@ double EuropeanMCCVMMPricer(string type, double S, double K, double T, double r,
 	for (long int i = 0; i < N; i++)
 	{
 		//	Adjust stock price.
-		ST[i] *= (exp(r * T) * S / Shat);
+		ST[i] *= (exp((r - q) * T) * S / Shat);
 
 		if (type == "C")
 		{
@@ -325,7 +325,7 @@ double EuropeanMCCVMMPricer(string type, double S, double K, double T, double r,
 	}
 
 	//	Take average.
-	Shat = exp(r * T) * S;
+	Shat = exp((r - q) * T) * S;
 	Vhat /= N;
 
 	//	Compute coefficient b.
@@ -345,7 +345,7 @@ double EuropeanMCCVMMPricer(string type, double S, double K, double T, double r,
 
 	for (long int i = 0; i < N; i++)
 	{
-		W += (V[i] - b * (ST[i] - exp(r * T) * S));
+		W += (V[i] - b * (ST[i] - exp((r - q) * T) * S));
 	}
 
 	//	Take average.
