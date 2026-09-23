@@ -209,7 +209,7 @@ vector<vector<double>> transpose(vector<vector<double>> A)
 {
 	long int n = A.size();
 	long int m = A[0].size();
-	vector<vector<double>> T = A;
+	vector<vector<double>> T(m, vector<double>(n));
 
 	for (long int i = 0; i < n; i++)
 	{
