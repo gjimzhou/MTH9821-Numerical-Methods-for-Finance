@@ -363,8 +363,8 @@ vector<double> BackwardSubstitutionBidiag(vector<vector<double>> U, vector<doubl
 	long int n = b.size();
 	vector<double> x(n);
 
-	x[0] = b[n - 1] / U[n - 1][n - 1];
-	for (long int j = n - 1; j > -1; j--)
+	x[n - 1] = b[n - 1] / U[n - 1][n - 1];
+	for (long int j = n - 2; j >= 0; j--)
 	{
 		x[j] = (b[j] - U[j][j + 1] * x[j + 1]) / U[j][j];
 	}
