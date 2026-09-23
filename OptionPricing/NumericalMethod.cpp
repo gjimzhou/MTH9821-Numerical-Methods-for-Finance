@@ -156,24 +156,26 @@ vector<double> BoxMullerMethod(long int N, long int seed)
 	while (result.size() < N)
 	{
 		long int M = result.size();
+		long int remaining = N - M;
+		long int draws = remaining + (remaining % 2);
 
-		//	Generate uniform to be used then reset the random seed.
-		vector<double> runif = LinearCongruentialGenerator(N - M, seed);
-		seed = runif[N - M - 1] * 2147483647;
+		//	Generate an even number of uniforms so i + 1 is always valid.
+		vector<double> runif = LinearCongruentialGenerator(draws, seed);
+		seed = runif[draws - 1] * 2147483647;
 
-		for (long int i = 0; i < (N - M); i += 2)
+		for (long int i = 0; i < draws && result.size() < N; i += 2)
 		{
 			double u1 = 2 * runif[i] - 1;
 			double u2 = 2 * runif[i + 1] - 1;
 
 			double x = u1 * u1 + u2 * u2;
 
-			if (x <= 1)
+			if (x > 0 && x <= 1)
 			{
 				double y = sqrt(-2 * log(x) / x);
 
 				result.push_back(u1 * y);
-				result.push_back(u2 * y);
+				if (result.size() < N) result.push_back(u2 * y);
 			}
 		}
 	}
